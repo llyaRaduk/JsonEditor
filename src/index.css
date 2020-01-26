@@ -1,0 +1,32 @@
+
+body{
+  background-color:#bdbebd;
+}
+.header{
+  text-align: center;
+  margin: 20px 0;
+}
+
+.textarea{
+  margin: 0 auto;
+  width: 100%;
+  height: 200px;
+
+}
+.inputColom{
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  border: none;
+}
+.mybtn{
+  margin-left: 15px;
+  margin-bottom: 5px;
+  width: 90px;
+}
+.mybtnMain{
+  margin-right: 20px;
+  margin-bottom: 20px;
+  height: 70px;
+  width: 190px;
+}
