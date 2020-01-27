@@ -28,13 +28,14 @@ class EditorPage extends React.Component {
   }
 
   createTable = () => {
-    if (this.IsJson(this.state.mainArray)) {
-      editorAPI.setData(this.state.mainArray);
-      if (JSON.parse(this.state.mainArray).length != 0) {
-        this.setState({ countColomsInTable: Object.keys(JSON.parse(this.state.mainArray)[0]) })
+    let correctJson = this.state.mainArray.replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ');
+    if (this.IsJson(correctJson)) {
+      editorAPI.setData(correctJson);
+      if (JSON.parse(correctJson).length != 0) {
+        this.setState({ countColomsInTable: Object.keys(JSON.parse(correctJson)[0]) })
       }
       this.setState({
-        arrayToTable: JSON.parse(this.state.mainArray)
+        arrayToTable: JSON.parse(correctJson)
       })
     }
     else {
@@ -115,8 +116,8 @@ class EditorPage extends React.Component {
         <Textarea className='center-block' changeInputData={this.changeInputData} value={this.state.mainArray} />
         <Table array={this.state.arrayToTable} editInformationInTable={this.editInformationInTable}
           countColomsInTable={this.state.countColomsInTable} deleteRow={this.deleteRow} addRow={this.addRow} shiftUp={this.shiftUp} shiftDown={this.shiftDown} />
-        <button  className='mybtnMain btn btn-secondary' onClick={this.createTable}>Создать таблицу</button>
-        <button  className='mybtnMain btn btn-secondary' onClick={this.createJSONToTextarea}>Создать JSON в textarea</button>
+        <button className='mybtnMain btn btn-secondary' onClick={this.createTable}>Создать таблицу</button>
+        <button className='mybtnMain btn btn-secondary' onClick={this.createJSONToTextarea}>Создать JSON в textarea</button>
       </div>
     )
   }
