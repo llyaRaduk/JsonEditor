@@ -29,7 +29,8 @@ class EditorPage extends React.Component {
 
   createTable = () => {
     let correctJson = this.state.mainArray.replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ');
-    if (this.IsJson(correctJson)) {
+    if (this.IsJson(correctJson) && Array.isArray(JSON.parse(correctJson))) {
+
       editorAPI.setData(correctJson);
       if (JSON.parse(correctJson).length != 0) {
         this.setState({ countColomsInTable: Object.keys(JSON.parse(correctJson)[0]) })
@@ -42,6 +43,7 @@ class EditorPage extends React.Component {
       alert('Проверьте введённые данные, должен быть массив объектов формата JSON')
     }
   }
+
   IsJson = (data) => {
     try {
       JSON.parse(data);
